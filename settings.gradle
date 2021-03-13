@@ -1,0 +1,3 @@
+include ':studywebview'
+include ':app'
+rootProject.name = "StudyWebview"
