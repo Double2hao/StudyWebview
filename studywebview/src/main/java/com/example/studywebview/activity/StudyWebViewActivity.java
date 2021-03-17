@@ -1,6 +1,7 @@
 package com.example.studywebview.activity;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.webkit.WebResourceError;
@@ -9,6 +10,8 @@ import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
 import com.example.studywebview.R;
+import com.example.studywebview.data.StudyWebViewConstant;
+import com.example.studywebview.data.WebViewStartParams;
 import com.example.studywebview.mgr.WebViewProcessManager;
 
 import androidx.annotation.Nullable;
@@ -22,7 +25,7 @@ public class StudyWebViewActivity extends Activity {
   //constants
   private static final String TAG = "StudyWebViewActivity";
   //data
-
+  private WebViewStartParams webViewStartParams;
   //ui
   private WebView wvContent;
 
@@ -30,10 +33,22 @@ public class StudyWebViewActivity extends Activity {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_webview);
 
+    processIntent();
     initViews();
-
-    WebViewProcessManager.getInstance().init(this, null);
+    WebViewProcessManager.getInstance().init(this, webViewStartParams);
     initWebView();
+    //打开页面,可以接受url==null，即将页面设置成空白
+    if (webViewStartParams != null) {
+      wvContent.loadUrl(webViewStartParams.startUrl);
+    }
+  }
+
+  private void processIntent() {
+    Intent intent = getIntent();
+    if (intent == null) {
+      return;
+    }
+    webViewStartParams = intent.getParcelableExtra(StudyWebViewConstant.PARAM_WEBVIEW_START_PARAMS);
   }
 
   @Override protected void onResume() {

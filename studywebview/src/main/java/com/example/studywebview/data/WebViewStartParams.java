@@ -23,13 +23,13 @@ public class WebViewStartParams implements Parcelable {
   private WebViewStartParams(Parcel in) {
     try {
       startUrl = in.readString();
-      in.readStringArray(arrayComponentClassName);
+      arrayComponentClassName = in.createStringArray();
     } catch (Exception e) {
       Log.e(TAG, "WebViewStartParams error:" + e.getMessage());
     }
   }
 
-  private static final Creator<WebViewStartParams> CREATOR = new Creator<WebViewStartParams>() {
+  public static final Creator<WebViewStartParams> CREATOR = new Creator<WebViewStartParams>() {
     @Override
     public WebViewStartParams createFromParcel(Parcel in) {
       return new WebViewStartParams(in);

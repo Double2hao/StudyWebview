@@ -4,6 +4,9 @@ import android.app.Service;
 import android.content.Intent;
 import android.os.IBinder;
 
+import com.example.studywebview.binder.NotifyBridgesBinder;
+import com.example.studywebview.binder.NotifyComponentBinder;
+
 import androidx.annotation.Nullable;
 
 /**
@@ -12,7 +15,8 @@ import androidx.annotation.Nullable;
  * description:
  */
 public class MainProcessService extends Service {
-  @Nullable @Override public IBinder onBind(Intent intent) {
-    return null;
+  @Nullable @Override
+  public IBinder onBind(Intent intent) {
+    return new NotifyBridgesBinder();
   }
 }

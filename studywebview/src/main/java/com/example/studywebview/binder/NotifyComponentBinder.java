@@ -1,9 +1,8 @@
 package com.example.studywebview.binder;
 
-import android.os.IBinder;
 import android.os.RemoteException;
 
-import com.example.studywebview.INotifyListener;
+import com.example.studywebview.ICallBack;
 import com.example.studywebview.IWebViewInterface;
 import com.example.studywebview.mgr.WebViewProcessManager;
 
@@ -14,9 +13,8 @@ import com.example.studywebview.mgr.WebViewProcessManager;
  */
 public class NotifyComponentBinder extends IWebViewInterface.Stub {
 
-  @Override public void notifyComponent(String cmd, String param, INotifyListener listener)
+  @Override public void notifyComponent(String cmd, String param, ICallBack callBack)
       throws RemoteException {
-    WebViewProcessManager.getInstance().notifyComponent(cmd, param, listener);
+    WebViewProcessManager.getInstance().notifyComponent(cmd, param, callBack);
   }
-
 }

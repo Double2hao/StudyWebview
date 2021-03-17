@@ -4,8 +4,9 @@ package com.example.studywebview.data;
  * author: xujiajia
  * created on: 2021/1/30 3:53 PM
  * description:
+ * component的生命周期
  */
-public interface IDelegateLifeCycle {
+public interface IComponentLifeCycle {
 
   void onInit();
 

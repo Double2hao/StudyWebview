@@ -2,16 +2,17 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.studywebview">
 
+  <uses-permission android:name="android.permission.INTERNET"/>
   <application>
     <activity
         android:name=".activity.StudyWebViewActivity"
         android:process=":webview"
-        android:taskAffinity="webview" />
+        android:taskAffinity="webview.test" />
 
+    <service android:name=".service.MainProcessService" />
     <service
         android:name=".service.WebViewProcessService"
         android:process=":webview" />
-    <service android:name=".service.MainProcessService" />
 
   </application>
 </manifest>

@@ -2,24 +2,25 @@ package com.example.studywebview.data;
 
 import android.view.ViewGroup;
 
-import com.example.studywebview.INotifyListener;
+import com.example.studywebview.activity.StudyWebViewActivity;
+import com.example.studywebview.mgr.WebViewProcessManager;
 
 /**
  * author: xujiajia
  * created on: 2021/1/30 2:50 PM
  * description:
  */
-public class BaseStudyWebViewComponent implements IDelegateLifeCycle {
-  ViewGroup contentView = null;
+public abstract class BaseStudyWebViewComponent implements IComponentLifeCycle {
+  public ViewGroup mContentView = null;
+  public StudyWebViewActivity mActivity = null;
 
-  public String[] supportCmds(){
-    return null;
+  public abstract String[] supportCmds();
+
+  public abstract void notify(String cmd, String param, INotifyListener listener);
+
+  public void notifyBridges(String cmd, String param, INotifyListener listener) {
+    WebViewProcessManager.getInstance().notifyBridges(cmd, param, listener);
   }
-
-  public void notify(String cmd, String param, INotifyListener listener){
-
-  }
-
 
   @Override public void onInit() {
 
